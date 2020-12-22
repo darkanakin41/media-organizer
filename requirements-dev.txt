@@ -1,0 +1,5 @@
+pylint
+pytest
+coverage
+
+-r requirements.txt

@@ -1,0 +1,13 @@
+thetvdb:
+  api_key: '<YOUR API KEY>'
+  language: 'en'
+  debug: false
+
+input_dirs:
+  - "<folder to scan>"
+
+output_dirs:
+  - target: '<target folder>'
+    type: '<guessit type>'
+    filters:
+      <a field from tvdb response>: '<a regex>'

@@ -1,0 +1,5 @@
+-e .
+
+PyYAML
+guessit
+tmdbv3api
