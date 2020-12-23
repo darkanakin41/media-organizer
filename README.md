@@ -33,3 +33,9 @@ Options:
 
 ![When nothing have to be done](./doc/assets/output-nothing.png)
 
+# TODO
+
+* [ ] Add Unit Testing
+* [ ] Add release pipeline
+* [ ] Add Lint
+
