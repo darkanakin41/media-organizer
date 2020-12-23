@@ -66,7 +66,7 @@ def copy_medias_to_target(medias: List[Media]):
 @click.option('--ignored', is_flag=True, default=False, help='Displayed ignored files in results.')
 @click.option('--exists', is_flag=True, default=False, help='Displayed target already existing in results.')
 def main(verbose: bool, silent: bool, dry_run: bool, ignored: bool, exists: bool):
-    logger.info('Retrieve medias and associated datas')
+    logger.info('Retrieve medias and associated dattas')
     medias = get_medias()
     logger.info('Copy medias to target')
     copy_medias_to_target(medias)
