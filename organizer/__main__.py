@@ -11,8 +11,17 @@ from prettytable import PrettyTable
 
 
 def print_result(medias: List[Media]):
-    table = PrettyTable(['File', 'Ignored', 'Target', 'Exists', 'Copied'])
+    headers = ['File', 'Size', 'Target', 'Copied']
+
+    if is_option('ignored'):
+        headers.append('Ignored')
+
+    if is_option('exists'):
+        headers.append('Exists')
+
+    table = PrettyTable(headers)
     table.align["File"] = "l"
+    table.align["Size"] = "r"
     table.align["Target"] = "l"
     table.align["Exists"] = "c"
     table.align["Ignored"] = "c"
@@ -21,11 +30,19 @@ def print_result(medias: List[Media]):
     display = False
 
     for media in medias:
-        if (is_option('ignored') or not media.ignored) and (is_option('exists') in sys.argv or not media.exists):
-            table.add_row([media.get_filename(), media.ignored, media.target, media.exists, media.copied])
+        if (is_option('ignored') or not media.ignored) and (is_option('exists') or not media.exists):
+            row = [media.get_filename(), media.get_file_size(), media.target, media.copied]
+
+            if is_option('ignored'):
+                row.append(media.ignored)
+            if is_option('exists'):
+                row.append(media.exists)
+
+            table.add_row(row)
+
             display = True
 
-    table.title = 'Fichiers'
+    table.title = 'Files'
 
     if display:
         print(table)
