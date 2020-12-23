@@ -26,12 +26,42 @@ Options:
 # Example results :
 
 ## When files are copied
-
-![When nothing have to be done](./doc/assets/output-copied.png)
+```shell
+$ media-organizer
+[INFO] Retrieve medias and associated datas
+[INFO] Processing folder X:\Direct Download
+[INFO] Found 4 files
+[INFO] Processing folder X:\Torrent\complete
+[INFO] Found 130 files
+[INFO] Copy medias to target
+[INFO] Copying media X:\Direct Download\Saw 2008 TRUEFRENCH MULTI HDLight 1080p-Wawacity vip\Saw.2008.TRUEFRENCH.MULTI.HDLight.1080p-Wawacity.vip.mkv to Y:\Films\French\Saw (2008).mkv -> 2.6 GB
+[INFO] Copying media X:\Direct Download\Saw 2009 TRUEFRENCH MULTI HDLight 1080p-Wawacity vip\Saw.2009.TRUEFRENCH.MULTI.HDLight.1080p-Wawacity.vip.mkv to Y:\Films\French\Saw (2009).mkv -> 2.5 GB
+[INFO] Copying media X:\Direct Download\Saw 2010 TRUEFRENCH MULTI HDLight 1080p-Wawacity vip\Saw.2010.TRUEFRENCH.MULTI.HDLight.1080p-Wawacity.vip.mkv to Y:\Films\French\Saw (2010).mkv -> 2.4 GB
+[INFO] Copying media X:\Direct Download\The Polka King 2017 MULTi 1080p WEB-DL x264-Wawacity vip\The.Polka.King.2017.MULTi.1080p.WEB-DL.x264-Wawacity.vip.mkv to Y:\Films\French\The Polka King (2017).mkv -> 2.1 GB
++----------------------------------------------------------------------------------------------------------------------------+
+|                                                            Files                                                           |
++--------------------------------------------------------------+--------+-------------------------------------------+--------+
+| File                                                         |   Size | Target                                    | Copied |
++--------------------------------------------------------------+--------+-------------------------------------------+--------+
+| Saw.2008.TRUEFRENCH.MULTI.HDLight.1080p-Wawacity.vip.mkv     | 2.6 GB | Y:\Films\French\Saw (2008).mkv            |  True  |
+| Saw.2009.TRUEFRENCH.MULTI.HDLight.1080p-Wawacity.vip.mkv     | 2.5 GB | Y:\Films\French\Saw (2009).mkv            |  True  |
+| Saw.2010.TRUEFRENCH.MULTI.HDLight.1080p-Wawacity.vip.mkv     | 2.4 GB | Y:\Films\French\Saw (2010).mkv            |  True  |
+| The.Polka.King.2017.MULTi.1080p.WEB-DL.x264-Wawacity.vip.mkv | 2.1 GB | Y:\Films\French\The Polka King (2017).mkv |  True  |
++--------------------------------------------------------------+--------+-------------------------------------------+--------+
+```
 
 ##When nothing have to be done
 
-![When nothing have to be done](./doc/assets/output-nothing.png)
+```shell
+$ media-organizer --dry-run
+[INFO] Retrieve medias and associated datas
+[INFO] Processing folder X:\Direct Download
+[INFO] Found 4 files
+[INFO] Processing folder X:\Torrent\complete
+[INFO] Found 130 files
+[INFO] Copy medias to target
+[INFO] Nothing to copy, all media are already in the right spot!
+```
 
 # TODO
 
