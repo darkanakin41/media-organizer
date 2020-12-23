@@ -3,3 +3,5 @@
 PyYAML
 guessit
 tmdbv3api
+prettytable
+click

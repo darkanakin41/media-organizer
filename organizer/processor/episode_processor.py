@@ -3,7 +3,7 @@ from typing import Optional, List
 
 from rebulk.match import MatchesDict
 
-from organizer import movie_genres_db, tv_db, tv_genres_db, config
+from organizer import tv_db, tv_genres_db, config
 from organizer.processor.abstract_processor import AbstractProcessor
 
 

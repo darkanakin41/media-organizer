@@ -1,39 +1,78 @@
-import logging
-import os
 import sys
+from typing import List
 
-import guessit
-from rebulk.match import MatchesDict
+import click
+from prettytable import PrettyTable
 
-from organizer.processor.episode_processor import EpisodeProcessor
-from organizer.processor.movie_processor import MovieProcessor
+from organizer import config
+from organizer.model.media import Media
+from organizer.util.arguments import is_option
+from organizer.util.logger import logger
+from organizer.util.scanner import scan_folder
 
 
-def process_file(input_file:str):
-    data: MatchesDict = guessit.guessit(input_file)
+def print_result(medias: List[Media]):
+    table = PrettyTable(['File', 'Ignored', 'Target', 'Exists', 'Copied'])
+    table.align["File"] = "l"
+    table.align["Target"] = "l"
+    table.align["Exists"] = "c"
+    table.align["Ignored"] = "c"
+    table.align["Copied"] = "c"
 
-    processor = None
-    if data['type'] == 'movie':
-        processor = MovieProcessor()
-    elif data['type'] == 'episode':
-        processor = EpisodeProcessor()
+    display = False
 
-    if processor is None:
-        logging.error('No processor for %s' % input_file)
-        sys.exit(1)
+    for media in medias:
+        if (is_option('ignored') or not media.ignored) and (is_option('exists') in sys.argv or not media.exists):
+            table.add_row([media.get_filename(), media.ignored, media.target, media.exists, media.copied])
+            display = True
 
-    output_data = processor.process(input_file, guessit_data=data)
-    target = processor.get_output_dir(output_data, guessit_data=data)
-    filename = processor.get_output_filename(data)
-    print("%s --> %s" % (input_file, os.path.join(target, filename)))
+    table.title = 'Fichiers'
 
-def main():
-    process_file("Fatman.2020.MULTi.TRUEFRENCH.1080p.BluRay.x264.AC3-Wawacity.vip.mkv")
-    process_file("2018.Dieudonne.L'émancipation.mp4")
-    process_file("Attack On Titan The Roar of Awakening (2018).mkv")
-    process_file("Dexter S01E01 (Dexter).mkv")
-    process_file("Assault Lily BOUQUET - s01e01.mkv")
-    process_file("Star Trek Lower Decks - s01e01.mkv")
+    if display:
+        print(table)
+    else:
+        logger.info('Nothing to copy, all media are already in the right spot!')
+
+
+def get_medias():
+    files = []
+    for folder in config.get('input').get('folders'):
+        files += scan_folder(folder)
+    files.sort()
+
+    medias = []
+
+    for index, f in enumerate(files):
+        logger.debug('Convert to media %d/%d: %s' % (index + 1, len(files), f))
+        medias.append(Media(f))
+
+    return medias
+
+
+def copy_medias_to_target(medias: List[Media]):
+    for index, media in enumerate(medias):
+        logger.debug('Processing media %d/%d: %s --> %s' % (
+            index + 1,
+            len(medias),
+            media.file,
+            media.target,
+        ))
+        media.copy_to_target()
+
+
+@click.command()
+@click.option('--verbose', is_flag=True, default=False, help='Verbose mode')
+@click.option('--silent', is_flag=True, default=False, help='Silent mode')
+@click.option('--dry-run', is_flag=True, default=False, help='Dry Run')
+@click.option('--ignored', is_flag=True, default=False, help='Displayed ignored files in results.')
+@click.option('--exists', is_flag=True, default=False, help='Displayed target already existing in results.')
+def main(verbose: bool, silent: bool, dry_run: bool):
+    logger.info('Retrieve medias and associated datas')
+    medias = get_medias()
+    logger.info('Copy medias to target')
+    copy_medias_to_target(medias)
+    print_result(medias)
+
 
 if __name__ == '__main__':
     main()

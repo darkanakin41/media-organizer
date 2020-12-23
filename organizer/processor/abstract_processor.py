@@ -21,16 +21,19 @@ class AbstractProcessor(ABC):
             return True
         for field in filters.keys():
             regex = re.compile(filters[field])
-            if isinstance(getattr(tvdb_data, field), list):
-                found = False
-                for value in getattr(tvdb_data, field):
-                    if regex.match(value):
-                        found = True
-                if not found:
-                    return False
-            else:
-                if not regex.match(getattr(tvdb_data, field)):
-                    return False
+            try:
+                if isinstance(getattr(tvdb_data, field), list):
+                    found = False
+                    for value in getattr(tvdb_data, field):
+                        if regex.match(value):
+                            found = True
+                    if not found:
+                        return False
+                else:
+                    if not regex.match(getattr(tvdb_data, field)):
+                        return False
+            except AttributeError:
+                return False
         return True
 
     def get_output_dir(self, tvdb_data):

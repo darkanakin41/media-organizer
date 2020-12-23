@@ -3,8 +3,12 @@ thetvdb:
   language: 'en'
   debug: false
 
-input_dirs:
-  - "<folder to scan>"
+input:
+  extensions: '.*\.(mkv|mp4|avi)$'
+  folders:
+  - '<folder to scan>'
+  ignored:
+    - '<a regex>'
 
 output_dirs:
   - target: '<target folder>'
