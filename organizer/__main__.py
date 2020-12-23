@@ -2,13 +2,12 @@ import sys
 from typing import List
 
 import click
-from prettytable import PrettyTable
-
 from organizer import config
 from organizer.model.media import Media
 from organizer.util.arguments import is_option
 from organizer.util.logger import logger
 from organizer.util.scanner import scan_folder
+from prettytable import PrettyTable
 
 
 def print_result(medias: List[Media]):
@@ -66,7 +65,7 @@ def copy_medias_to_target(medias: List[Media]):
 @click.option('--dry-run', is_flag=True, default=False, help='Dry Run')
 @click.option('--ignored', is_flag=True, default=False, help='Displayed ignored files in results.')
 @click.option('--exists', is_flag=True, default=False, help='Displayed target already existing in results.')
-def main(verbose: bool, silent: bool, dry_run: bool):
+def main(verbose: bool, silent: bool, dry_run: bool, ignored: bool, exists: bool):
     logger.info('Retrieve medias and associated datas')
     medias = get_medias()
     logger.info('Copy medias to target')
