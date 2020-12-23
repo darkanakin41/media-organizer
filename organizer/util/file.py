@@ -24,7 +24,7 @@ def get_file_target(input_file: str):
 
     output_data = processor.process(input_file, guessit_data=data)
     target = processor.get_output_dir(output_data, guessit_data=data)
-    filename = processor.get_output_filename(data)
+    filename = processor.get_output_filename(data, output_data)
 
     return os.path.join(target, filename)
 

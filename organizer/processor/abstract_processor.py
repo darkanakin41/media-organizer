@@ -2,9 +2,14 @@ import re
 from abc import ABC, abstractmethod
 
 from rebulk.match import MatchesDict
+from tmdbv3api.as_obj import AsObj
 
 
 class AbstractProcessor(ABC):
+
+    @abstractmethod
+    def get_output_filename(self, guessit_data: MatchesDict, tvdb_data):
+        pass
 
     @abstractmethod
     def process(self, filename: str, guessit_data: MatchesDict):

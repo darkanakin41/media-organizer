@@ -1,6 +1,7 @@
 from typing import Optional
 
 from rebulk.match import MatchesDict
+from tmdbv3api.as_obj import AsObj
 
 from organizer import movie_db, movie_genres_db, config
 from organizer.processor.abstract_processor import AbstractProcessor
@@ -47,5 +48,9 @@ class MovieProcessor(AbstractProcessor):
     def get_output_dir(self, tvdb_data, guessit_data: MatchesDict = None):
         return AbstractProcessor.get_output_dir(self, tvdb_data)
 
-    def get_output_filename(self, guessit_data: MatchesDict):
-        return '%s (%04d).%s' % (guessit_data['title'], guessit_data['year'], guessit_data['container'])
+    def get_output_filename(self, guessit_data: MatchesDict, tvdb_data):
+        try:
+            year = guessit_data['year']
+        except KeyError:
+            year = tvdb_data.release_date[0:4]
+        return '%s (%s).%s' % (guessit_data['title'], year, guessit_data['container'])
