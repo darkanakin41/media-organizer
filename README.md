@@ -50,7 +50,7 @@ $ media-organizer
 +--------------------------------------------------------------+--------+-------------------------------------------+--------+
 ```
 
-##When nothing have to be done
+## When nothing have to be done
 
 ```shell
 $ media-organizer --dry-run
@@ -64,8 +64,6 @@ $ media-organizer --dry-run
 ```
 
 # TODO
-
 * [ ] Add Unit Testing
 * [ ] Add release pipeline
-* [ ] Add Lint
 
