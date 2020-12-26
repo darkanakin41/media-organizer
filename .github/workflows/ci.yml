@@ -38,7 +38,7 @@ jobs:
 
 #      - run: coverage run --source=ddb -m pytest
 #
-#      - run: python setup.py build
+      - run: python setup.py build
 #
 #      - name: Coveralls
 #        run: coveralls
