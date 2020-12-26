@@ -1,4 +1,3 @@
-import sys
 from typing import List
 
 import click
@@ -11,6 +10,10 @@ from prettytable import PrettyTable
 
 
 def print_result(medias: List[Media]):
+    """
+    Print medias processing result into a table
+    :param medias: the list of medias
+    """
     headers = ['File', 'Size', 'Target', 'Copied']
 
     if is_option('ignored'):
@@ -50,7 +53,11 @@ def print_result(medias: List[Media]):
         logger.info('Nothing to copy, all media are already in the right spot!')
 
 
-def get_medias():
+def get_medias() -> List[Media]:
+    """
+    Retrieve the list of medias to be processed into folders
+    :return: the list of medias to process
+    """
     files = []
     for folder in config.get('input').get('folders'):
         files += scan_folder(folder)
@@ -58,21 +65,24 @@ def get_medias():
 
     medias = []
 
-    for index, f in enumerate(files):
-        logger.debug('Convert to media %d/%d: %s' % (index + 1, len(files), f))
-        medias.append(Media(f))
+    for index, file in enumerate(files):
+        logger.debug('Convert to media %d/%d: %s', index + 1, len(files), file)
+        medias.append(Media(file))
 
     return medias
 
 
 def copy_medias_to_target(medias: List[Media]):
+    """
+    Copy medias to target
+    :param medias: the list of medias
+    """
     for index, media in enumerate(medias):
-        logger.debug('Processing media %d/%d: %s --> %s' % (
-            index + 1,
-            len(medias),
-            media.file,
-            media.target,
-        ))
+        logger.debug('Processing media %d/%d: %s --> %s',
+                     index + 1,
+                     len(medias),
+                     media.file,
+                     media.target)
         media.copy_to_target()
 
 
@@ -83,6 +93,15 @@ def copy_medias_to_target(medias: List[Media]):
 @click.option('--ignored', is_flag=True, default=False, help='Displayed ignored files in results.')
 @click.option('--exists', is_flag=True, default=False, help='Displayed target already existing in results.')
 def main(verbose: bool, silent: bool, dry_run: bool, ignored: bool, exists: bool):
+    """
+    Main command
+    :param verbose: if running in verbose mode
+    :param silent: if running in silent mode
+    :param dry_run: if running in dry-run mode
+    :param ignored: if display ignored medias
+    :param exists: if display existing medias
+    :return:
+    """
     logger.info('Retrieve medias and associated datas')
     medias = get_medias()
     logger.info('Copy medias to target')
@@ -91,4 +110,5 @@ def main(verbose: bool, silent: bool, dry_run: bool, ignored: bool, exists: bool
 
 
 if __name__ == '__main__':
+    # pylint: disable=no-value-for-parameter
     main()

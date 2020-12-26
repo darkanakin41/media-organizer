@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from tmdbv3api import TMDb, Movie, TV, Genre
 
 from .__version__ import __version__

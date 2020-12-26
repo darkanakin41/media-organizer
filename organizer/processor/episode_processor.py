@@ -1,14 +1,15 @@
 import os
 from typing import Optional, List
 
-from rebulk.match import MatchesDict
-from tmdbv3api.as_obj import AsObj
-
 from organizer import tv_db, tv_genres_db, config
 from organizer.processor.abstract_processor import AbstractProcessor
+from rebulk.match import MatchesDict
 
 
 class EpisodeProcessor(AbstractProcessor):
+    """
+    The processor dedicated to Episodes type medias
+    """
 
     def process(self, filename: str, guessit_data: MatchesDict):
         tvdb_data = self._get_tvdb_data(guessit_data['title'])
@@ -50,7 +51,7 @@ class EpisodeProcessor(AbstractProcessor):
         output_dir = AbstractProcessor.get_output_dir(self, tvdb_data)
         return os.path.join(output_dir, guessit_data['title'], "Saison " + str(guessit_data['season']).zfill(2))
 
-    def get_output_filename(self, guessit_data: MatchesDict, tvdb_data):
+    def get_output_filename(self, guessit_data: MatchesDict, tvdb_data) -> str:
         return '%s - s%02de%02d.%s' % (
             guessit_data['title'],
             guessit_data['season'],
