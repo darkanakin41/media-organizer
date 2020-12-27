@@ -90,4 +90,7 @@ def valid_files() -> List[str]:
             os.path.join(get_test_data_folder(),
                          'input',
                          'Assault Lily BOUQUET - s01e01.mkv'),
+            os.path.join(get_test_data_folder(),
+                         'input',
+                         'Shingeki.no.Kyojin.S04E04.VOSTFR.1080p.WEBRip.x264.mkv'),
             ]
