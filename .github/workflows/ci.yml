@@ -1,4 +1,4 @@
-name: build
+name: integration
 on:
   push: ~
   pull_request: ~
