@@ -1,7 +1,7 @@
 from tmdbv3api import Movie, TV, Genre
 
 from organizer.api import tmdb_api
-from tests.testutils import array_equals  # pylint: disable=no-name-in-module
+from tests.testutils import array_equals
 
 
 class TestTmDbApi:
