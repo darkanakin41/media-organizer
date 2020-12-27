@@ -37,8 +37,6 @@ class AbstractProcessor(ABC):
 
     @staticmethod
     def _output_dir_match_filter(tvdb_data, filters: dict):
-        if filters is None:
-            return True
         for field in filters.keys():
             regex = re.compile(filters[field])
             try:
@@ -65,4 +63,4 @@ class AbstractProcessor(ABC):
         for output_dir in self.get_output_dirs():
             if self._output_dir_match_filter(tvdb_data, output_dir.get('filters')):
                 return output_dir.get('target')
-        return None
+        return None # pragma: no cover

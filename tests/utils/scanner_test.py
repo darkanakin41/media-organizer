@@ -1,8 +1,10 @@
 import os
 
 from organizer.util.scanner import scan_folder, is_ignored
+from tests.conftest import valid_files
+from tests.testutils import get_test_data_folder
 
-data_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data', 'input')
+data_folder = os.path.join(get_test_data_folder(), 'input')
 
 
 def test_scan_folder_no_results():
@@ -16,10 +18,10 @@ def test_scan_folder_no_results():
 
 def test_scan_folder_results():
     """
-    Test one result
+    Test results
     :return:
     """
-    assert len(scan_folder(data_folder)) == 2
+    assert len(scan_folder(data_folder)) == len(valid_files()) + 1
 
 
 def test_is_ignored_true():

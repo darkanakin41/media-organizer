@@ -34,7 +34,7 @@ def print_result(medias: List[Media]):
 
     for media in medias:
         if (is_option('ignored') or not media.ignored) and (is_option('exists') or not media.exists):
-            row = [media.get_filename(), media.get_file_size(), media.target, media.copied]
+            row = [media.filename, media.get_file_size(), media.target, media.copied]
 
             if is_option('ignored'):
                 row.append(media.ignored)

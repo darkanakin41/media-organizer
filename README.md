@@ -76,6 +76,10 @@ $ media-organizer --dry-run
 
 # TODO
 
-* [ ] Add Unit Testing
+* [ ] Improve Unit Testing
 * [ ] Add release pipeline
+* [ ] Add better configuration management ([dynaconf] or [appdirs])
+
+[dynaconf]: (https://github.com/rochacbruno/dynaconf)
+[appdirs]: (https://pypi.org/project/appdirs/)
 

@@ -1,6 +1,6 @@
 from tmdbv3api import Movie, TV, Genre
 
-from organizer.api import tmdb_api
+from organizer.api.tmdbapi import TmDbApi
 from tests.testutils import array_equals
 
 
@@ -15,7 +15,7 @@ class TestTmDbApi:
         Check the movie endpoint
         :return:
         """
-        assert isinstance(tmdb_api.movie_endpoint, Movie)
+        assert isinstance(TmDbApi().movie_endpoint, Movie)
 
     @staticmethod
     def test_tv_endpoint():
@@ -23,7 +23,7 @@ class TestTmDbApi:
         Check the TV endpoint
         :return:
         """
-        assert isinstance(tmdb_api.tv_endpoint, TV)
+        assert isinstance(TmDbApi().tv_endpoint, TV)
 
     @staticmethod
     def test_genre_endpoint():
@@ -31,7 +31,7 @@ class TestTmDbApi:
         Check the genre endpoint
         :return:
         """
-        assert isinstance(tmdb_api.genre_endpoint, Genre)
+        assert isinstance(TmDbApi().genre_endpoint, Genre)
 
     @staticmethod
     def test_genre_tv_db():
@@ -39,16 +39,17 @@ class TestTmDbApi:
         Check the TV Genre DB
         :return:
         """
-        assert tmdb_api._genre_tv_db_data is None  # pylint: disable=protected-access
+        tmdbapi = TmDbApi()
+        assert tmdbapi._genre_tv_db_data is None  # pylint: disable=protected-access
 
-        genre_tv_db_data = tmdb_api.genre_endpoint.tv_list()
+        genre_tv_db_data = tmdbapi.genre_endpoint.tv_list()
 
-        tmp = tmdb_api.genre_tv_db
+        tmp = tmdbapi.genre_tv_db
 
         array_equals(list(map(lambda x: x.name, tmp)), list(map(lambda x: x.name, genre_tv_db_data)))
-        array_equals(list(map(lambda x: x.name, tmdb_api._genre_tv_db_data)),  # pylint: disable=protected-access
+        array_equals(list(map(lambda x: x.name, tmdbapi._genre_tv_db_data)),  # pylint: disable=protected-access
                      list(map(lambda x: x.name, genre_tv_db_data)))
-        assert tmdb_api.genre_tv_db == tmp
+        assert tmdbapi.genre_tv_db == tmp
 
     @staticmethod
     def test_genre_movie_db():
@@ -56,13 +57,14 @@ class TestTmDbApi:
         Check the Movie Genre DB
         :return:
         """
-        assert tmdb_api._genre_movie_db_data is None  # pylint: disable=protected-access
+        tmdbapi = TmDbApi()
+        assert tmdbapi._genre_movie_db_data is None  # pylint: disable=protected-access
 
-        genre_movie_db_data = tmdb_api.genre_endpoint.movie_list()
+        genre_movie_db_data = tmdbapi.genre_endpoint.movie_list()
 
-        tmp = tmdb_api.genre_movie_db
+        tmp = tmdbapi.genre_movie_db
 
         array_equals(list(map(lambda x: x.name, tmp)), list(map(lambda x: x.name, genre_movie_db_data)))
-        array_equals(list(map(lambda x: x.name, tmdb_api._genre_movie_db_data)),  # pylint: disable=protected-access
+        array_equals(list(map(lambda x: x.name, tmdbapi._genre_movie_db_data)),  # pylint: disable=protected-access
                      list(map(lambda x: x.name, genre_movie_db_data)))
-        assert tmdb_api.genre_movie_db == tmp
+        assert tmdbapi.genre_movie_db == tmp
