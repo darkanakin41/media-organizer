@@ -1,3 +1,6 @@
+tmdb:
+  api_key: '551b815e813c715ad6387da50fb1d325'
+
 input:
   folders: []
   ignored:

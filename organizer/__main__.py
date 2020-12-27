@@ -59,7 +59,7 @@ def get_medias() -> List[Media]:
     :return: the list of medias to process
     """
     files = []
-    for folder in config.get('input').get('folders'):
+    for folder in config['input']['folders']:
         files += scan_folder(folder)
     files.sort()
 
