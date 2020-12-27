@@ -39,8 +39,8 @@ jobs:
       - run: coverage run --source=organizer -m pytest
 
       - run: python setup.py build
-#
-#      - name: Coveralls
-#        run: coveralls
-#        env:
-#          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
+      - name: Coveralls
+        run: coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
