@@ -9,9 +9,11 @@ BASE_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(_
 
 def get_config():
     config_paths = [str(Path.home()), BASE_FOLDER]
+    print(os.getenv('MEDIA_ORGANIZER_CONFIG'))
     if os.getenv('MEDIA_ORGANIZER_CONFIG') is not None:
         config_paths = [os.getenv('MEDIA_ORGANIZER_CONFIG')]
 
+    print(config_paths)
     for config_path in config_paths:
         config_file = os.path.join(config_path, '.media-organizer.yaml')
         try:
