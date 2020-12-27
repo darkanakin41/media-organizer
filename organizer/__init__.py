@@ -2,7 +2,6 @@
 
 from tmdbv3api import TMDb, Movie, TV, Genre
 
-from .__version__ import __version__
 from .util.config import get_config
 
 config = get_config()
@@ -16,5 +15,9 @@ movie_db = Movie()
 tv_db = TV()
 genre_db = Genre()
 
-tv_genres_db = genre_db.tv_list()
-movie_genres_db = genre_db.movie_list()
+tv_genres_db = []
+movie_genres_db = []
+
+if tmdb.api_key is not None and tmdb.api_key != '':
+    tv_genres_db = genre_db.tv_list()
+    movie_genres_db = genre_db.movie_list()
