@@ -1,8 +1,10 @@
 from typing import Optional
 
-from organizer import movie_db, movie_genres_db, config
-from organizer.processor.abstract_processor import AbstractProcessor
 from rebulk.match import MatchesDict
+
+from organizer import config
+from organizer.api import tmdb_api
+from organizer.processor.abstract_processor import AbstractProcessor
 
 
 class MovieProcessor(AbstractProcessor):
@@ -21,7 +23,7 @@ class MovieProcessor(AbstractProcessor):
 
     @staticmethod
     def _get_tvdb_data(title: str) -> Optional[any]:
-        results = movie_db.search(title)
+        results = tmdb_api.movie_endpoint.search(title)
 
         if len(results) == 1:
             return results[0]
@@ -36,14 +38,14 @@ class MovieProcessor(AbstractProcessor):
     def _update_genres(data) -> Optional[any]:
         data.genres = []
         for genre_id in data.genre_ids:
-            genre = [mg for mg in movie_genres_db if mg.id == genre_id]
+            genre = [mg for mg in tmdb_api.genre_movie_db if mg.id == genre_id]
             if len(genre) == 1:
                 data.genres.append(genre[0].name)
 
     @staticmethod
     def get_output_dirs():
-        dirs = [dir for dir in config.get("output") if dir.get('type') == 'movie']
-        dirs.sort(key=lambda dir: len(dir.get('filters') if dir.get('filters') is not None else []), reverse=True)
+        dirs = [dir for dir in config['output'] if dir['type'] == 'movie']
+        dirs.sort(key=lambda dir: len(dir['filters'] if dir['filters'] is not None else []), reverse=True)
         return dirs
 
     def get_output_dir(self, tvdb_data, guessit_data: MatchesDict = None):

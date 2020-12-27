@@ -1,5 +1,6 @@
 import os
 
+
 def pytest_configure():
     """
     Configuration before any tests

@@ -2,7 +2,7 @@ import os
 
 from organizer.util.scanner import scan_folder, is_ignored
 
-data_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data')
+data_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data', 'input')
 
 
 def test_scan_folder_no_results():

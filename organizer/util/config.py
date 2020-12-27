@@ -8,7 +8,7 @@ from organizer.util.logger import logger
 BASE_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 
-def get_config():
+def get_config() -> dict:
     """
     Get the configuration
     :return:

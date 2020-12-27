@@ -1,4 +1,4 @@
-thetvdb:
+tmdb:
   api_key: '<YOUR API KEY>'
   language: 'en'
   debug: false
