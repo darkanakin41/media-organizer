@@ -42,7 +42,7 @@ class MovieProcessor(AbstractProcessor):
 
     @staticmethod
     def get_output_dirs():
-        dirs = [dir for dir in config.get("output_dirs") if dir.get('type') == 'movie']
+        dirs = [dir for dir in config.get("output") if dir.get('type') == 'movie']
         dirs.sort(key=lambda dir: len(dir.get('filters') if dir.get('filters') is not None else []), reverse=True)
         return dirs
 

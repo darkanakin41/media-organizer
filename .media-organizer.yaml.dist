@@ -10,7 +10,7 @@ input:
   ignored:
     - '<a regex>'
 
-output_dirs:
+output:
   - target: '<target folder>'
     type: '<guessit type>'
     filters:

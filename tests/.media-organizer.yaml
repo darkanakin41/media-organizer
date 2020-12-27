@@ -1,12 +1,8 @@
 thetvdb:
   api_key: ''
-  language: 'en'
-  debug: false
 
 input:
-  extensions: '.*\.(mkv|mp4|avi)$'
   folders: []
   ignored:
     - '.*(ignored).*'
 
-output_dirs: []
