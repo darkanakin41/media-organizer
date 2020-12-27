@@ -8,7 +8,7 @@ from organizer import config
 from organizer.api import tmdb_api
 from organizer.processor.abstract_processor import AbstractProcessor
 from organizer.util.logger import logger
-from organizer.util.translate import translate
+from organizer.util.translation import translate
 
 
 class EpisodeProcessor(AbstractProcessor):
