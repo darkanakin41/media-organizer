@@ -92,7 +92,7 @@ def copy_medias_to_target(medias: List[Media]):
 @click.option('--dry-run', is_flag=True, default=False, help='Dry Run')
 @click.option('--ignored', is_flag=True, default=False, help='Displayed ignored files in results.')
 @click.option('--exists', is_flag=True, default=False, help='Displayed target already existing in results.')
-def main(verbose: bool, silent: bool, dry_run: bool, ignored: bool, exists: bool):
+def main(verbose: bool, silent: bool, dry_run: bool, ignored: bool, exists: bool): # pragma: no cover
     """
     Main command
     :param verbose: if running in verbose mode
