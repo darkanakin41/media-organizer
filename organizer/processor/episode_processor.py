@@ -1,4 +1,5 @@
 import os
+
 from typing import Optional, List
 
 from rebulk.match import MatchesDict
@@ -6,6 +7,8 @@ from rebulk.match import MatchesDict
 from organizer import config
 from organizer.api import tmdb_api
 from organizer.processor.abstract_processor import AbstractProcessor
+from organizer.util.logger import logger
+from organizer.util.translate import translate
 
 
 class EpisodeProcessor(AbstractProcessor):
@@ -32,6 +35,9 @@ class EpisodeProcessor(AbstractProcessor):
         for result in results:
             if result.name == title:
                 return result
+            if result.original_language != tmdb_api.tmdb.language:
+                if translate(tmdb_api.tmdb.language, result.original_language, title) == result.original_name:
+                    return result
 
         return None
 

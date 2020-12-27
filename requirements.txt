@@ -6,3 +6,4 @@ tmdbv3api
 prettytable
 click
 marshmallow
+py-translate
