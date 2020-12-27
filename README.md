@@ -1,6 +1,9 @@
 darkanakin41/media-organizer
 ===
 
+[![integration](https://github.com/darkanakin41/media-organizer/workflows/integration/badge.svg?branch=master)](https://github.com/darkanakin41/media-organizer/actions?query=workflow%3Aintegration)
+[![Coverage Status](https://coveralls.io/repos/github/darkanakin41/media-organizer/badge.svg)](https://coveralls.io/github/darkanakin41/media-organizer)
+
 This is a simple way for me to organize my downloaded medias from download folder to the right path.
 
 Based on the configuration, it scan for media files in a folder, retrieve details
