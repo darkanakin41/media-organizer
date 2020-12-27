@@ -10,8 +10,6 @@ class TmDbApi:
 
     def __init__(self):
         self.config = config['tmdb']
-        if self.config['api_key'] is None or self.config['api_key'] == '':
-            raise Exception('Please provide an API Key for tmdb configuration')
 
         self._genre_tv_db_data = None
         self._genre_movie_db_data = None
@@ -27,8 +25,6 @@ class TmDbApi:
         Get the movie endpoint
         :return:
         """
-        if self.tmdb is None:
-            raise Exception('No TMDB Configured')
         return Movie()
 
     @property
@@ -37,8 +33,6 @@ class TmDbApi:
         Get the tv endpoint
         :return:
         """
-        if self.tmdb is None:
-            raise Exception('No TMDB Configured')
         return TV()
 
     @property
@@ -47,8 +41,6 @@ class TmDbApi:
         Get the genre endpoint
         :return:
         """
-        if self.tmdb is None:
-            raise Exception('No TMDB Configured')
         return Genre()
 
     @property

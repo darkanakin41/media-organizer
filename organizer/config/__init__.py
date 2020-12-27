@@ -10,6 +10,6 @@ class GlobalConfig(Schema):
     Global configuration for Media Organizer
     """
 
-    tmdb = fields.Nested(TmDbConfig, missing=TmDbConfig())
-    input = fields.Nested(InputConfig, missing=InputConfig())
-    output = fields.List(fields.Nested(OutputConfig, missing=OutputConfig()), missing=[])
+    tmdb = fields.Nested(TmDbConfig, missing=TmDbConfig().load({}))
+    input = fields.Nested(InputConfig, missing=InputConfig().load({'folders': []}))
+    output = fields.List(fields.Nested(OutputConfig), missing=[])
