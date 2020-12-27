@@ -5,4 +5,4 @@ def pytest_configure():
     Configuration before any tests
     :return:
     """
-    os.environ['MEDIA_ORGANIZER_CONFIG'] = os.path.join(os.path.dirname(os.path.realpath(__file__)))
+    os.environ['MEDIA_ORGANIZER_CONFIG'] = os.path.dirname(os.path.realpath(__file__))
