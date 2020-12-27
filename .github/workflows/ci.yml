@@ -37,6 +37,8 @@ jobs:
         if: matrix.python-version != '3.9'
 
       - run: coverage run --source=organizer -m pytest
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
 
       - run: python setup.py build
 
