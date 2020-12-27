@@ -5,6 +5,10 @@ from organizer.__main__ import get_medias
 
 
 def test_get_medias():
+    """
+    Test retrieval of medias
+    :return:
+    """
     config['input']['folders'] = [os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data', 'input')]
     config['output'].append({
         'target': os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data', 'output'),
