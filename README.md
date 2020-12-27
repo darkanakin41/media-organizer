@@ -3,13 +3,20 @@ darkanakin41/media-organizer
 
 This is a simple way for me to organize my downloaded medias from download folder to the right path.
 
-Based on the configuration, it scan for media files in a folder, retrieve details from [themoviedb](https://www.themoviedb.org/)
+Based on the configuration, it scan for media files in a folder, retrieve details
+from [themoviedb](https://www.themoviedb.org/)
 and then copy them to the appropriate target folder.
 
 If the target file already exist, it is not overwrote.
 
 # Usage
 
+First things first, you have to create a configuration file based
+on [.media-organizer.yaml.dist](./.media-organizer.yaml.dist).
+
+This file needs to be placed in your home folder or in a path defined in `MEDIA_ORGANIZER_CONFIG` environment variable.
+
+Then you can run the program as described below: 
 ```shell
 $ media-organizer --help
 Usage: media-organizer [OPTIONS]
@@ -26,6 +33,7 @@ Options:
 # Example results :
 
 ## When files are copied
+
 ```shell
 $ media-organizer
 [INFO] Retrieve medias and associated datas
@@ -64,6 +72,7 @@ $ media-organizer --dry-run
 ```
 
 # TODO
+
 * [ ] Add Unit Testing
 * [ ] Add release pipeline
 

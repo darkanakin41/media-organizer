@@ -1,7 +1,7 @@
 /darkanakin41_media_organizer.egg-info
 /coverage
 /.coverage
-/config.yaml
+/.media-organizer.yaml
 
 ###> darkanakin41/project-generator
 .idea
